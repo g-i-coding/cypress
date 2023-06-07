@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_role" {
-  name = "lambda-database-role"
+  name = "TeAmCyPrEsS-database-role"
 
   assume_role_policy = <<EOF
 {
@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_policy" "lambda_policy" {
-  name   = "lambda-database-policy"
+  name   = "TeAmCyPrEsS-database-policy"
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -32,7 +32,7 @@ resource "aws_iam_policy" "lambda_policy" {
         "dynamodb:UpdateItem",
         "dynamodb:DeleteItem"
       ],
-      "Resource": "${data.aws_dynamodb_table.my_table.arn}"
+      "Resource": "${data.aws_dynamodb_table.TeAmCyPrEsS.arn}"
     }
   ]
 }

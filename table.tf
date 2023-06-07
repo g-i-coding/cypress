@@ -15,6 +15,6 @@ resource "aws_dynamodb_table" "TeAmCyPrEsS" {
 
 }
 
-data "aws_dynamodb_table" "my_table" {
+data "aws_dynamodb_table" "TeAmCyPrEsS" {
   name = aws_dynamodb_table.TeAmCyPrEsS.name
 }
