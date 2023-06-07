@@ -32,7 +32,7 @@ resource "aws_iam_policy" "lambda_policy" {
         "dynamodb:UpdateItem",
         "dynamodb:DeleteItem"
       ],
-      "Resource": "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/TABLE_NAME"
+      "Resource": "${table_arn}"
     }
   ]
 }
