@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_policy" "lambda_policy" {
-  name   = "lambda-database-policy"
+  name   = "TeAmCyPrEsS-database-policy"
   policy = <<EOF
 {
   "Version": "2012-10-17",
