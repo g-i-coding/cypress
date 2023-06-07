@@ -41,5 +41,6 @@ variable "amplify-repo" {
 
 variable "github_token" {
   type    = string
+  default = null
   sensitive = true
 }
