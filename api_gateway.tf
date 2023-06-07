@@ -1,14 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
-  }
-}
-provider "aws" {
-    region = "us-east-1"
-}
 resource "aws_api_gateway_rest_api" "TeamCypressAPI" {
     name = "TeamCypressAPI"
     description = "This is Team Cypress' API."
@@ -63,6 +52,6 @@ resource "aws_api_gateway_stage" "api-stage" {
     stage_name = "dev"
 }
 
-output "base_url" {
+output "api_url" {
     value = "${aws_api_gateway_deployment.api-deployment.invoke_url}"
 }
