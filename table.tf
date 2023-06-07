@@ -15,6 +15,6 @@ resource "aws_dynamodb_table" "TeAmCyPrEsS" {
 
 }
 
-output "table_arn" {
-  value = "${aws_dynamodb_table.TeAmCyPrEsS.*.arn}"
+data "aws_dynamodb_table" "TeAmCyPrEsS" {
+  name = aws_dynamodb_table.TeAmCyPrEsS.name
 }

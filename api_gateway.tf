@@ -17,24 +17,24 @@ resource "aws_api_gateway_method" "TeamCypressAPI_Get-Method" {
 }
 
 resource "aws_api_gateway_integration" "integration" {
-    rest_api_rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
+    rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
     resource_id = aws_api_gateway_resource.TeamCypressAPIresource.id
     http_method = aws_api_gateway_method.TeamCypressAPI_Get-Method.http_method
     integration_http_method = "POST"
     type = "AWS_PROXY"
-    uri = aws_lambda_function.cypress-lambda.invoke_arn
+    uri = aws_lambda_function.lambda.invoke_arn
 }
 
 resource "aws_lambda_permission" "teamcypressapigw_lambda" {
     statement_id = "AllowExecutionFromAPIGateway"
     action = "lambda:InvokeFunction"
-    function_name = aws_lambda_function.cypress-lambda.function_name
+    function_name = aws_lambda_function.lambda.function_name
     principal = "apigateway.amazonaws.com"
-    source_arn = "arn:aws:execute-api:${var.myregion}:${var.accountID}:${aws_api_gateway_rest_api.TeamCypressAPI.id}/*/${aws_api_gateway_method.TeamCypressAPI_Get-Method.http_method}${aws_api_gateway_resource.TeamCypressAPIresource.path}"
+    source_arn = "arn:aws:execute-api:${var.myregion}:${var.accountId}:${aws_api_gateway_rest_api.TeamCypressAPI.id}/*/${aws_api_gateway_method.TeamCypressAPI_Get-Method.http_method}${aws_api_gateway_resource.TeamCypressAPIresource.path}"
 }
 
 resource "aws_api_gateway_deployment" "api-deployment" {
-    rest_rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
+    rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
 
     triggers = {
         redeployment = sha1(jsonencode(aws_api_gateway_rest_api.TeamCypressAPI.body))
