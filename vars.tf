@@ -1,39 +1,39 @@
 #API Gateway Variables#
 variable "endpoint_path" {
   description = "The GET endpoint path"
-  type = string
-  default = "method"
+  type        = string
+  default     = "method"
 }
 
 variable "myregion" {
-    description = "AWS region"
-    type = string
-    default = "us-east-1"
+  description = "AWS region"
+  type        = string
+  default     = "us-east-1"
 }
 
 variable "accountId" {
-    description = "AWS account ID"
-    type = string
-    default = "176906365059"
+  description = "AWS account ID"
+  type        = string
+  default     = "176906365059"
 }
 
 variable "lambda_function_name" {
-    description = "What to name the lambda function"
-    type = string
-    default = "cypress-lambda"
+  description = "What to name the lambda function"
+  type        = string
+  default     = "cypress-lambda"
 }
 ##VPC Variables
 variable "amplify-name" {
-  type = string
-  default = "cypress-project3"
+  type        = string
+  default     = "cypress-project3"
   description = "The name of the app"
 
 }
 
 
 variable "amplify-repo" {
-  type = string
-  default = "https://github.com/g-i-coding/cypress"
+  type        = string
+  default     = "https://github.com/g-i-coding/cypress"
   description = "Repo amplify pulls from"
 }
 
@@ -41,6 +41,6 @@ variable "amplify-repo" {
 
 variable "github_token" {
   type    = string
-  default = "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"
+  default = "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"
   # sensitive = true
 }

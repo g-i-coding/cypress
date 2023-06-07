@@ -1,7 +1,7 @@
 resource "aws_amplify_app" "cypress-project3" {
   name         = var.amplify-name
   repository   = var.amplify-repo
-  access_token = "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"
+  access_token = "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"
 
   build_spec                  = file("./buildspec.yaml")
   enable_auto_branch_creation = true
