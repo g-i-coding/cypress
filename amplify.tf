@@ -1,17 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
-  }
-}
-
-# Configure the AWS Provider
-provider "aws" {
-    region = "us-east-1"
-}
-
 resource "aws_amplify_app" "cypress-project3" {
     name       = var.amplify-name
     repository = var.amplify-repo
