@@ -52,6 +52,6 @@ resource "aws_api_gateway_stage" "api-stage" {
     stage_name = "dev"
 }
 
-output "base_url" {
+output "api_url" {
     value = "${aws_api_gateway_deployment.api-deployment.invoke_url}"
 }
