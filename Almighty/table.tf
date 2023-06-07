@@ -12,4 +12,9 @@ resource "aws_dynamodb_table" "TeAmCyPrEsS" {
     Name = "TeamCypress"
     Purpose = "Pain"
   }
+
+}
+
+output "table_arn" {
+  value = "${aws_dynamodb_table.TeAmCyPrEsS.*.arn}"
 }
