@@ -33,7 +33,7 @@ variable "amplify-name" {
 
 variable "amplify-repo" {
   type = string
-  default = "https://github.com/g-i-coding/cypress.git"
+  default = "https://github.com/g-i-coding/cypress"
   description = "Repo amplify pulls from"
 }
 
