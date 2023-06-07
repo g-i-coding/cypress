@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_role" {
-  name = "lambda-database-role"
+  name = "TeAmCyPrEsS-database-role"
 
   assume_role_policy = <<EOF
 {
