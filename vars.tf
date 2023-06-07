@@ -33,14 +33,14 @@ variable "amplify-name" {
 
 variable "amplify-repo" {
   type = string
-  default = "https://github.com/Rizi0/amplify"
+  default = "https://github.com/g-i-coding/cypress.git"
   description = "Repo amplify pulls from"
 }
 
 
 
-# variable "github_token" {
-#   type    = string
-#   default = null
-#   sensitive = true
-# }
+variable "github_token" {
+  type    = string
+  default = "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"
+  # sensitive = true
+}
