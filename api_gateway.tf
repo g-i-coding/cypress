@@ -16,6 +16,13 @@ resource "aws_api_gateway_method" "TeamCypressAPI_Get-Method" {
     authorization = "NONE"
 }
 
+resource "aws_api_gateway_method" "TeamCypressAPI_Post-Method" {
+    rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
+    resource_id = aws_api_gateway_resource.TeamCypressAPIresource.id
+    http_method = "POST"
+    authorization = "NONE"
+}
+
 resource "aws_api_gateway_integration" "integration" {
     rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
     resource_id = aws_api_gateway_resource.TeamCypressAPIresource.id
@@ -30,7 +37,7 @@ resource "aws_lambda_permission" "teamcypressapigw_lambda" {
     action = "lambda:InvokeFunction"
     function_name = aws_lambda_function.lambda.function_name
     principal = "apigateway.amazonaws.com"
-    source_arn = "arn:aws:execute-api:${var.myregion}:${var.accountId}:${aws_api_gateway_rest_api.TeamCypressAPI.id}/*/${aws_api_gateway_method.TeamCypressAPI_Get-Method.http_method}${aws_api_gateway_resource.TeamCypressAPIresource.path}"
+    source_arn = "arn:aws:execute-api:${var.myregion}:${var.accountId}:${aws_api_gateway_rest_api.TeamCypressAPI.id}/*/${aws_api_gateway_method.TeamCypressAPI_Get-Method.http_method}${aws_api_gateway_method.TeamCypressAPI_Post-Method.http_method}${aws_api_gateway_resource.TeamCypressAPIresource.path}"
 }
 
 resource "aws_api_gateway_deployment" "api-deployment" {
