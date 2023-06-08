@@ -1,7 +1,7 @@
 resource "aws_amplify_app" "cypress-project3" {
   name         = var.amplify-name
   repository   = var.amplify-repo
-  access_token = var.github_token
+  access_token = data.aws_ssm_parameter.github_token.value
 
   build_spec                  = file("./buildspec.yaml")
   enable_auto_branch_creation = true
@@ -31,6 +31,10 @@ resource "aws_amplify_branch" "main" {
   branch_name = "main"
 
   stage = "PRODUCTION"
+}
+
+data "aws_ssm_parameter" "github_token" {
+  name = "/ap_github"
 }
 
 output "Run_build" {
