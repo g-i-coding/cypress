@@ -26,7 +26,11 @@
         };
         // make API call with parameters and use promises to get response
         fetch(
+<<<<<<< HEAD
           'https://lhku920h9d.execute-api.us-east-1.amazonaws.com/dev/',
+=======
+          'https://lhku920h9d.execute-api.us-east-1.amazonaws.com/dev',
+>>>>>>> 5e9cfae899959d4175cd32cf75554e17c794ea68
           requestOptions
         )
           .then((response) => response.json())
@@ -45,7 +49,11 @@
       // fetchRatings function that fetches all book ratings and displays them as an unordered list
       var fetchRatings = () => {
         // make GET request to API endpoint to retrieve all ratings
+<<<<<<< HEAD
         fetch('https://lhku920h9d.execute-api.us-east-1.amazonaws.com/dev/')
+=======
+        fetch('https://lhku920h9d.execute-api.us-east-1.amazonaws.com/dev')
+>>>>>>> 5e9cfae899959d4175cd32cf75554e17c794ea68
           .then((response) => response.json())
           .then((data) => {
             // get reference to unordered list
