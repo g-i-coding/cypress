@@ -34,7 +34,7 @@ resource "aws_amplify_branch" "main" {
 }
 
 data "aws_ssm_parameter" "github_token" {
-  name = "/ap_github"
+  name = "/cypress_github"
 }
 
 output "Run_build" {
