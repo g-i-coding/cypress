@@ -4,7 +4,7 @@ from boto3.dynamodb.conditions import Key
 from decimal import Decimal
 
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('cypress-table')
+table = dynamodb.Table('CypressRaterOne')
 
 def decimal_default(obj):
     if isinstance(obj, Decimal):
