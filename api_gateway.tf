@@ -16,10 +16,26 @@ resource "aws_api_gateway_method" "TeamCypressAPI_Get-Method" {
     authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "integration" {
+resource "aws_api_gateway_method" "TeamCypressAPI_Post-Method" {
+    rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
+    resource_id = aws_api_gateway_resource.TeamCypressAPIresource.id
+    http_method = "POST"
+    authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "Getintegration" {
     rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
     resource_id = aws_api_gateway_resource.TeamCypressAPIresource.id
     http_method = aws_api_gateway_method.TeamCypressAPI_Get-Method.http_method
+    integration_http_method = "GET"
+    type = "AWS_PROXY"
+    uri = aws_lambda_function.lambda.invoke_arn
+}
+
+resource "aws_api_gateway_integration" "Postintegration" {
+    rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
+    resource_id = aws_api_gateway_resource.TeamCypressAPIresource.id
+    http_method = aws_api_gateway_method.TeamCypressAPI_Post-Method.http_method
     integration_http_method = "POST"
     type = "AWS_PROXY"
     uri = aws_lambda_function.lambda.invoke_arn
@@ -43,13 +59,20 @@ resource "aws_api_gateway_deployment" "api-deployment" {
     lifecycle {
         create_before_destroy = true
     }
-    depends_on = [aws_api_gateway_method.TeamCypressAPI_Get-Method, aws_api_gateway_integration.integration]
+    depends_on = [aws_api_gateway_method.TeamCypressAPI_Get-Method, aws_api_gateway_integration.Getintegration]
 }
 
 resource "aws_api_gateway_stage" "api-stage" {
     deployment_id = aws_api_gateway_deployment.api-deployment.id
     rest_api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
     stage_name = "dev"
+}
+
+module "api-gateway-enable-cors" {
+  source  = "squidfunk/api-gateway-enable-cors/aws"
+  version = "0.3.3"
+  api_id = aws_api_gateway_rest_api.TeamCypressAPI.id
+  api_resource_id = aws_api_gateway_resource.TeamCypressAPIresource.id
 }
 
 output "api_url" {
