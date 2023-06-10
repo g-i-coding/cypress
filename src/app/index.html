@@ -26,7 +26,7 @@
         };
         // make API call with parameters and use promises to get response
         fetch(
-          'https://8u8z0ps5cd.execute-api.us-east-1.amazonaws.com/dev/method',
+          'https://rdixqsfj4d.execute-api.us-east-1.amazonaws.com/dev/',
           requestOptions
         )
           .then((response) => response.json())
@@ -45,7 +45,7 @@
       // fetchRatings function that fetches all book ratings and displays them as an unordered list
       var fetchRatings = () => {
         // make GET request to API endpoint to retrieve all ratings
-        fetch('https://8u8z0ps5cd.execute-api.us-east-1.amazonaws.com/dev/method')
+        fetch('https://rdixqsfj4d.execute-api.us-east-1.amazonaws.com/dev/')
           .then((response) => response.json())
           .then((data) => {
             // get reference to unordered list
