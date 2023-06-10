@@ -20,13 +20,14 @@
         // create a JSON object with parameters for API call and store in a variable
         var requestOptions = {
           method: 'POST',
+          mode: "cors",
           headers: myHeaders,
           body: raw,
           redirect: 'follow',
         };
         // make API call with parameters and use promises to get response
         fetch(
-          'https://8u8z0ps5cd.execute-api.us-east-1.amazonaws.com/dev/method',
+          'https://0dwuy834c3.execute-api.us-east-1.amazonaws.com/dev/',
           requestOptions
         )
           .then((response) => response.json())
@@ -45,7 +46,13 @@
       // fetchRatings function that fetches all book ratings and displays them as an unordered list
       var fetchRatings = () => {
         // make GET request to API endpoint to retrieve all ratings
-        fetch('https://8u8z0ps5cd.execute-api.us-east-1.amazonaws.com/dev/method')
+        fetch('https://0dwuy834c3.execute-api.us-east-1.amazonaws.com/dev/', {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json"
+          } 
+        })
           .then((response) => response.json())
           .then((data) => {
             // get reference to unordered list
