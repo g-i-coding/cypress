@@ -46,7 +46,13 @@
       // fetchRatings function that fetches all book ratings and displays them as an unordered list
       var fetchRatings = () => {
         // make GET request to API endpoint to retrieve all ratings
-        fetch('https://0dwuy834c3.execute-api.us-east-1.amazonaws.com/dev/')
+        fetch('https://0dwuy834c3.execute-api.us-east-1.amazonaws.com/dev/', {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json"
+          } 
+        })
           .then((response) => response.json())
           .then((data) => {
             // get reference to unordered list
