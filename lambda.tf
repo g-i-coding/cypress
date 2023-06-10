@@ -56,7 +56,7 @@ resource "aws_lambda_function" "lambda" {
   # If the file is not in the current working directory you will need to include a
   # path.module in the filename.
   filename      = "lambda_function_payload.zip"
-  function_name = "cypress-lambda"
+  function_name = "cypress_lambda"
   role          = aws_iam_role.lambda_role.arn
   handler       = "index.lambda_handler"
 
