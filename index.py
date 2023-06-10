@@ -20,7 +20,8 @@ def format_items(items):
 
 def lambda_handler(event, context):
     response_headers = {
-        'Access-Control-Allow-Origin': '*', 
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials' : True,
         'Content-Type': 'application/json'
     }
     
