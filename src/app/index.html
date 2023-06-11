@@ -22,7 +22,7 @@
         var requestOptions = {
           method: 'POST',
           mode: "cors",
-          'headers': {
+          headers: {
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'OPTIONS,PUT, POST',
@@ -56,7 +56,10 @@
           method: "GET",
           mode: "cors",
           headers: {
-            "Content-Type": "application/json"
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,PUT, POST',
+            'Content-Type': 'application/json',
           } 
         })
           .then((response) => response.json())
