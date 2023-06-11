@@ -22,7 +22,12 @@
         var requestOptions = {
           method: 'POST',
           mode: "cors",
-          headers: myHeaders,
+          'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,PUT, POST',
+            'Content-Type': 'application/json',
+          },
           body: raw,
           redirect: 'follow',
         };
