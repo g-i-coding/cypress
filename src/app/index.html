@@ -21,7 +21,6 @@
         // create a JSON object with parameters for API call and store in a variable
         var requestOptions = {
           method: 'POST',
-          mode: "cors",
           headers: {
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Origin': '*',
@@ -54,7 +53,6 @@
         // make GET request to API endpoint to retrieve all ratings
         fetch(url, {
           method: "GET",
-          mode: "cors",
           headers: {
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Origin': '*',
