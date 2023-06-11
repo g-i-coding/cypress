@@ -10,7 +10,7 @@
 
     <script>
       // callAPI function that takes the book and rating numbers as parameters
-      var url = 'https://3lh5b3yzu4.execute-api.us-east-1.amazonaws.com/dev'
+      var url = 'https://3lh5b3yzu4.execute-api.us-east-1.amazonaws.com/dev/'
       var callAPI = (book, rating) => {
         // instantiate a headers object
         var myHeaders = new Headers();
@@ -21,12 +21,7 @@
         // create a JSON object with parameters for API call and store in a variable
         var requestOptions = {
           method: 'POST',
-          headers: {
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'OPTIONS,PUT, POST',
-            'Content-Type': 'application/json',
-          },
+          headers: myHeaders,
           body: raw,
           redirect: 'follow',
         };
@@ -51,15 +46,7 @@
       // fetchRatings function that fetches all book ratings and displays them as an unordered list
       var fetchRatings = () => {
         // make GET request to API endpoint to retrieve all ratings
-        fetch(url, {
-          method: "GET",
-          headers: {
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'OPTIONS,PUT, POST',
-            'Content-Type': 'application/json',
-          } 
-        })
+        fetch(url)
           .then((response) => response.json())
           .then((data) => {
             // get reference to unordered list
