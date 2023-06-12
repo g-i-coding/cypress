@@ -2,6 +2,7 @@ import json
 import boto3
 from boto3.dynamodb.conditions import Key
 from decimal import Decimal
+import uuid
 
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('CypressRaterOne')
@@ -14,19 +15,21 @@ def decimal_default(obj):
 def format_items(items):
     formatted_items = []
     for item in items:
-        formatted_items.append({"book": item["ID"].replace('_', ' '), "rating": float(item["rating"])})
+        formatted_items.append({"book": item["BookTitle"].replace('_', ' '), "Rating": float(item["Rating"])})
     return formatted_items
 
 def lambda_handler(event, context):
     response_headers = {
-        'Access-Control-Allow-Origin': '*', 
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials' : True,
         'Content-Type': 'application/json'
     }
     
     try:
         if event['httpMethod'] == 'POST':
             body = json.loads(event['body'])
-            table.put_item(Item={'ID': body['book'], 'rating': Decimal(body['rating'])})
+            rating_id = str(uuid.uuid4())
+            table.put_item(Item={'BookTitle': body['book'], 'Rating': Decimal(body['rating']), 'RatingId': rating_id})
             return {
                 'statusCode': 200,
                 'headers': response_headers,

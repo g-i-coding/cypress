@@ -10,6 +10,7 @@
 
     <script>
       // callAPI function that takes the book and rating numbers as parameters
+      var url = 'https://3lh5b3yzu4.execute-api.us-east-1.amazonaws.com/dev/method'
       var callAPI = (book, rating) => {
         // instantiate a headers object
         var myHeaders = new Headers();
@@ -26,6 +27,7 @@
         };
         // make API call with parameters and use promises to get response
         fetch(
+          url,
           'https://lhku920h9d.execute-api.us-east-1.amazonaws.com/dev/',
           requestOptions
         )
@@ -45,6 +47,7 @@
       // fetchRatings function that fetches all book ratings and displays them as an unordered list
       var fetchRatings = () => {
         // make GET request to API endpoint to retrieve all ratings
+        fetch(url)
         fetch('https://lhku920h9d.execute-api.us-east-1.amazonaws.com/dev/')
           .then((response) => response.json())
           .then((data) => {
@@ -56,7 +59,7 @@
             data.forEach((rating) => {
               var li = document.createElement('li');
               li.appendChild(
-                document.createTextNode(rating.book + ': ' + rating.rating)
+                document.createTextNode(rating.book + ': ' + rating.Rating)
               );
               ul.appendChild(li);
             });
