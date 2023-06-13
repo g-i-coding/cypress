@@ -9,11 +9,11 @@ pipeline {
 
     stage('amplify build') {
       steps {
-        withCredentials([string(credentialsId: 'cypress-jenkins', variable: 'AWS_CREDENTIALS')]) {
+        withCredentials([usernamePassword(credentialsId: 'aws-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     sh '''
                         # Configure AWS CLI
-                        aws configure set aws_access_key_id "$AWS_CREDENTIALS_USR"
-                        aws configure set aws_secret_access_key "$AWS_CREDENTIALS_PSW"
+                        aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+                        aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
                         aws configure set default.region "us-east-1"
                         aws configure set default.output "json"
                     '''
