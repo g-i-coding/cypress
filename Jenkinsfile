@@ -9,10 +9,13 @@ pipeline {
 
     stage('amplify build') {
       steps {
-        withAWS(credentials: 'cypress-jenkins') {
-                    sh '''
-                      aws amplify list-apps
-                    '''
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding',
+          credentialsId: "cypress-jenkins",
+          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        ]]) {
+            sh "aws sts get-caller-identity"
         }
       }
     }
