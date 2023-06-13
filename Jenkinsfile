@@ -9,7 +9,7 @@ pipeline {
 
     stage('amplify build') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'aws-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+        withCredentials([usernamePassword(credentialsId: 'cypress-jenkins', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     sh '''
                         # Configure AWS CLI
                         aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
