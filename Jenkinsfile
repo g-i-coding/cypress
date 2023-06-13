@@ -15,7 +15,10 @@ pipeline {
           accessKeyVariable: 'AWS_ACCESS_KEY_ID',
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
-            sh "aws sts get-caller-identity"
+            sh '''
+            appid=$(aws amplify list-apps --query 'apps[0].appId')
+            aws amplify start-job --app-id ${appid} --branch-name ap --job-type RELEASE
+            '''
         }
       }
     }
