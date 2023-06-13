@@ -9,7 +9,15 @@ pipeline {
 
     stage('amplify build') {
       steps {
-        sh 'aws amplify list-apps'
+        withCredentials([string(credentialsId: 'cypress-jenkins', variable: 'AWS_CREDENTIALS')]) {
+                    sh '''
+                        # Configure AWS CLI
+                        aws configure set aws_access_key_id "$AWS_CREDENTIALS_USR"
+                        aws configure set aws_secret_access_key "$AWS_CREDENTIALS_PSW"
+                        aws configure set default.region "us-east-1"
+                        aws configure set default.output "json"
+                    '''
+        }
       }
     }
 
