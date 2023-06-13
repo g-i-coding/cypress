@@ -18,6 +18,10 @@ h1 {
 
   font-size: 2.5em;
 }
+h2 {
+	color: #ffffff;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
 ul {
   color: #86c232;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -103,4 +107,42 @@ input {
 .footer p {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+ul.nav_menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+}
+.active {
+	background-color: #4CAF50;
+}
+li a {
+	float: left;
+	border-right:1px solid #bbb;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 12px 14px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+.nav_menu_right {
+	float: right;
 }

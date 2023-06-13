@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cypress Log</title>
+    <title>CypressRaterOne</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
@@ -70,9 +70,13 @@
   </head>
   <body>
     <div class="header">
-      <h1>RATE YOUR VetTech Programs!</h1>
-      <img src="books.png" alt="" />
+      <h1 onmouseover="style.color='blue'" onmouseout="style.color='white'">Rate Your VetTec Program!</h1>
+	  	<img src="books.png" alt="" />
     </div>
+	<ul class="nav_menu">
+		<li><a class="active" href="index.html">Home</a></li>
+		<li class="nav_menu_right"><a href="about.html">About</a></li>
+	</ul>
 
     <form>
       <div class="form-block">
@@ -94,9 +98,10 @@
         </button>
       </div>
     </form>
-    <div class="list">
+	<img src="library.jpeg" alt="" style="float:right;width:600px;height:600px;padding:45px;" />
+    <div class="list" style="border:2px solid #86c232;">
+	<h2>Current Ratings</h2>
       <ul id="ratings"></ul>
-      <img src="library.jpeg" alt="" />
     </div>
 
     <!-- Add script tag to call fetchRatings when the page loads -->
