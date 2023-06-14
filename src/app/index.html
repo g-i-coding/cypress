@@ -1,114 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cypress Log</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-    <script>
-      // callAPI function that takes the book and rating numbers as parameters
-      var url = 'https://9to766c1j6.execute-api.us-east-1.amazonaws.com/dev/method'
-      var callAPI = (book, rating) => {
-        // instantiate a headers object
-        var myHeaders = new Headers();
-        // add content type header to object
-        myHeaders.append('Content-Type', 'application/json');
-        // using built in JSON utility package turn object to string and store in a variable
-        var raw = JSON.stringify({ book: book, rating: rating });
-        // create a JSON object with parameters for API call and store in a variable
-        var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow',
-        };
-        // make API call with parameters and use promises to get response
-        fetch(
-          url,
-          requestOptions
-        )
-          .then((response) => response.json())
-          .then((result) => {
-            alert(result.message);
-            // Clear the input fields
-            document.getElementById('book').value = '';
-            document.getElementById('rating').value = '';
-            // fetch all ratings after submitting new rating
-            fetchRatings();
-          })
-          .catch((error) => console.log('error', error));
-      };
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cypress Log</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-      // fetchRatings function that fetches all book ratings and displays them as an unordered list
-      // fetchRatings function that fetches all book ratings and displays them as an unordered list
-      var fetchRatings = () => {
-        // make GET request to API endpoint to retrieve all ratings
-        fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            // get reference to unordered list
-            var ul = document.getElementById('ratings');
-            // clear any existing list items
-            ul.innerHTML = '';
-            // loop through ratings and create list item for each one
-            data.forEach((rating) => {
-              var li = document.createElement('li');
-              li.appendChild(
-                document.createTextNode(rating.book + ': ' + rating.Rating)
-              );
-              ul.appendChild(li);
-            });
-          })
-          .catch((error) => console.log('error', error));
+  <script>
+    // callAPI function that takes the book and rating numbers as parameters
+    var url = 'https://9to766c1j6.execute-api.us-east-1.amazonaws.com/dev/method'
+    var callAPI = (book, rating) => {
+      // instantiate a headers object
+      var myHeaders = new Headers();
+      // add content type header to object
+      myHeaders.append('Content-Type', 'application/json');
+      // using built in JSON utility package turn object to string and store in a variable
+      var raw = JSON.stringify({ book: book, rating: rating });
+      // create a JSON object with parameters for API call and store in a variable
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
       };
-    </script>
-  </head>
-  <body>
-    <div class="header">
-      <h1 onmouseover="style.color='#86c232'" onmouseout="style.color='white'">Rate Your VetTec Program!</h1><!--Rate Your VA Programs!-->
-      <img src="books.png" alt="" />
+      // make API call with parameters and use promises to get response
+      fetch(
+        url,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          alert(result.message);
+          // Clear the input fields
+          document.getElementById('book').value = '';
+          document.getElementById('rating').value = '';
+          // fetch all ratings after submitting new rating
+          fetchRatings();
+        })
+        .catch((error) => console.log('error', error));
+    };
+
+    // fetchRatings function that fetches all book ratings and displays them as an unordered list
+    // fetchRatings function that fetches all book ratings and displays them as an unordered list
+    var fetchRatings = () => {
+      // make GET request to API endpoint to retrieve all ratings
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          // get reference to unordered list
+          var ul = document.getElementById('ratings');
+          // clear any existing list items
+          ul.innerHTML = '';
+          // loop through ratings and create list item for each one
+          data.forEach((rating) => {
+            var li = document.createElement('li');
+            li.appendChild(
+              document.createTextNode(rating.book + ': ' + rating.Rating)
+            );
+            ul.appendChild(li);
+          });
+        })
+        .catch((error) => console.log('error', error));
+    };
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <h1 onmouseover="style.color='#86c232'" onmouseout="style.color='white'">Rate Your VetTec Program!</h1>
+    <!--Rate Your VA Programs!-->
+    <img src="books.png" alt="" />
+  </div>
+  <div class="div_box">
+
+    <span><a class="home" href="index.html">Home</a></span>
+    <span class="about"><a href="about.html">About</a></span>
+
+  </div>
+
+  <form>
+    <div class="form-block">
+      <label>VetTech Program:</label>
+      <input type="text" id="book" />
     </div>
-    <ul class="nav_menu">
-      <li><a class="active" href="index.html">Home</a></li>
-      <li class="nav_menu_right"><a href="about.html">About</a></li>
-    </ul>
-    <form>
-      <div class="form-block">
-        <label>VetTech Program:</label>
-        <input type="text" id="book" />
-      </div>
-      <div class="form-block">
-        <label>Rating (1-10):</label>
-        <input type="text" id="rating" />
-      </div>
+    <div class="form-block">
+      <label>Rating (1-10):</label>
+      <input type="text" id="rating" />
+    </div>
 
-      <!-- set button onClick method to call function we defined passing input values as parameters -->
-      <div class="form-block">
-        <button
-          type="button"
-          onclick="callAPI(document.getElementById('book').value,document.getElementById('rating').value)"
-        >
-          SUBMIT
-        </button>
-      </div>
-    </form>
-    <br>
-    <img src="cypressbonsai.jpg" alt="" style="float:right;width:600px;height:600px;margin-right:10%;margin-top:2.5%;"/>
-    <div class="list" style="border:2px solid #86c232;">
+    <!-- set button onClick method to call function we defined passing input values as parameters -->
+    <div class="form-block">
+      <button type="button"
+        onclick="callAPI(document.getElementById('book').value,document.getElementById('rating').value)">
+        SUBMIT
+      </button>
+    </div>
+  </form>
+  <br>
+
+  <div class="list">
+    <div>
       <h2>Current Ratings:</h2>
       <ul id="ratings"></ul>
     </div>
-    <!-- Add script tag to call fetchRatings when the page loads -->
-    <script>
-      window.onload = function () {
-        fetchRatings();
-      };
-    </script>
-    <div class="footer">
-      <p>© 2023 CypressRatings</p>
-    </div>
-  </body>
+
+
+    <img src="cypressbonsai.jpg" alt="" />
+  </div>
+  <!-- Add script tag to call fetchRatings when the page loads -->
+  <script>
+    window.onload = function () {
+      fetchRatings();
+    };
+  </script>
+  <div class="footer">
+    <p>© 2023 CypressRatings</p>
+  </div>
+</body>
+
 </html>
