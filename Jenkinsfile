@@ -17,7 +17,7 @@ pipeline {
         ]]) {
             sh '''
             appid=$(aws amplify list-apps --query 'apps[0].appId')
-            aws amplify start-job --app-id ${appid} --branch-name ap --job-type RELEASE
+            aws amplify start-job --app-id ${appid} --branch-name main --job-type RELEASE
             '''
         }
       }
