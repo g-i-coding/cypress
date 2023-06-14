@@ -9,17 +9,13 @@ pipeline {
 
     stage('amplify build') {
       steps {
-        withCredentials([[
-          $class: 'AmazonWebServicesCredentialsBinding',
-          credentialsId: "cypress-jenkins",
-          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-        ]]) {
-            sh '''
-            appid=$(aws amplify list-apps --query 'apps[0].appId')
+        withCredentials(bindings: [string(credentialsId: 'cypress-jenkins', variable: 'AWS_CREDENTIALS')]) {
+          sh '''
+            appid=$(aws amplify list-apps --query \'apps[0].appId\')
             aws amplify start-job --app-id ${appid} --branch-name main --job-type RELEASE
             '''
         }
+
       }
     }
 
