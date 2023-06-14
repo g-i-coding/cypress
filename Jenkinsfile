@@ -17,7 +17,8 @@ pipeline {
         ]]) {
           sh '''
             aws configure set default.region "us-east-1"
-            appid=$(aws amplify list-apps --query \'apps[0].appId\')
+            tempid=$(aws amplify list-apps --query \'apps[0].appId\')
+            appid=$(echo $tempid | sed 's/"//g')
             aws amplify start-job --app-id ${appid} --branch-name main --job-type RELEASE
             '''
         }
