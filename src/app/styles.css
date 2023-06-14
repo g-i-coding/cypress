@@ -127,6 +127,7 @@ input {
 
 .active {
   background-color: #4caf50;
+  border-radius: 5px;
 }
 span a {
   float: left;
