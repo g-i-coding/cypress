@@ -16,6 +16,7 @@ pipeline {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           sh '''
+            aws configure set default.region "us-east-1"
             appid=$(aws amplify list-apps --query \'apps[0].appId\')
             aws amplify start-job --app-id ${appid} --branch-name main --job-type RELEASE
             '''
