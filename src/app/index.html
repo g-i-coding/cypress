@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CypressRaterOne-AP-Test</title>
+    <title>Cypress Log</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <script>
       // callAPI function that takes the book and rating numbers as parameters
-      var url =  'https://9to766c1j6.execute-api.us-east-1.amazonaws.com/dev/method'
+      var url = 'https://9to766c1j6.execute-api.us-east-1.amazonaws.com/dev/method'
       var callAPI = (book, rating) => {
         // instantiate a headers object
         var myHeaders = new Headers();
@@ -28,7 +28,6 @@
         // make API call with parameters and use promises to get response
         fetch(
           url,
-          'https://9to766c1j6.execute-api.us-east-1.amazonaws.com/dev/method',
           requestOptions
         )
           .then((response) => response.json())
@@ -48,7 +47,6 @@
       var fetchRatings = () => {
         // make GET request to API endpoint to retrieve all ratings
         fetch(url)
-        fetch('https://9to766c1j6.execute-api.us-east-1.amazonaws.com/dev/method')
           .then((response) => response.json())
           .then((data) => {
             // get reference to unordered list
@@ -70,13 +68,9 @@
   </head>
   <body>
     <div class="header">
-      <h1 onmouseover="style.color='#86c232'" onmouseout="style.color='white'">Rate Your VetTec Program!</h1><!--Rate your VA VetTec Program!-->
-	  	<img src="books.png" alt="" />
+      <h1>RATE YOUR VetTech Programs!</h1>
+      <img src="books.png" alt="" />
     </div>
-	<ul class="nav_menu">
-		<li><a class="active" href="index.html">Home</a></li>
-		<li class="nav_menu_right"><a href="about.html">About</a></li>
-	</ul>
 
     <form>
       <div class="form-block">
@@ -98,11 +92,9 @@
         </button>
       </div>
     </form>
-    <br>
-	<img src="cypressbonsai.jpg" alt="" style="float:right;width:550px;height:550px;margin-right:150px;" />
-    <div class="list" style="border:2px solid #86c232;">
-	    <h2>Current Ratings</h2>
+    <div class="list">
       <ul id="ratings"></ul>
+      <img src="library.jpeg" alt="" />
     </div>
 
     <!-- Add script tag to call fetchRatings when the page loads -->
